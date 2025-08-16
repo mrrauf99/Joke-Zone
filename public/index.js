@@ -16,6 +16,9 @@ function updateCategoryState() {
   setBorder(category_box, isCustomChecked && !categories.is(":checked"));
 }
 
+// Initialize Category Checkbox Disable
+updateCategoryState();
+
 // Radio buttons change
 category_box.find("input[type='radio']").on("change", updateCategoryState);
 categories.on("change", updateCategoryState);
@@ -54,13 +57,6 @@ jokeTypeInputs.on("change", function () {
   setBorder(".joke-type", !isChecked);
 });
 
-// Initialize category state
-updateCategoryState();
-
-// Validation on page load
-idRangeInputs.trigger("input");
-jokeTypeInputs.trigger("change");
-
 // Reset form
 $(".reset").on("click", function (e) {
   e.preventDefault();
@@ -98,4 +94,25 @@ $(".reset").on("click", function (e) {
 
   // Reset result to default text
   $("pre").text('Set parameters and click "Send Request" above');
+});
+
+// Validate form submission
+$("form").on("submit", function (e) {
+  const isCustomChecked = $("#custom").prop("checked");
+  let isCategoryChecked = categories.is(":checked");
+  const isJokeTypeChecked = $("#single,#twopart").is(":checked");
+  const isIdRangeValid = Number($("#from").val()) < Number($("#to").val());
+
+  if (!isCustomChecked) {
+    isCategoryChecked = true;
+  }
+
+  if (isCategoryChecked && isJokeTypeChecked && isIdRangeValid) {
+    return;
+  } else {
+    e.preventDefault();
+    $("pre").text(
+      "Error:\n\nOne or more of the parameters you specified are invalid.\nThey are outlined with a red border.\n\nPlease correct the parameters and try again."
+    );
+  }
 });

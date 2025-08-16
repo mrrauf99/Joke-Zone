@@ -47,23 +47,6 @@ app.post("/", async (req, res) => {
     ","
   )}&contains=${searchString}&idRange=${from}-${to}&amount=${jokeAmount}`;
 
-  if (
-    jokeType.length === 0 ||
-    categories.length === 0 ||
-    Number(from) > Number(to)
-  ) {
-    res.render("index.ejs", {
-      formData: {
-        ...req.body,
-        single: req.body.single || null,
-        twopart: req.body.twopart || null,
-      },
-      result:
-        "Error:\n\nOne or more of the parameters you specified are invalid.\nThey are outlined with a red border.\n\nPlease correct the parameters and try again.",
-    });
-    return;
-  }
-
   try {
     const result = await axios.get(API_URL);
     const data =

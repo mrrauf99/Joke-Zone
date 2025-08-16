@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Joke Zone</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <!-- Desktop browser tab icons -->
+    <link
+      rel="icon"
+      href="/images/favicon-16x16.png"
+      sizes="16x16"
+      type="image/png"
+    />
+    <link
+      rel="icon"
+      href="/images/favicon-32x32.png"
+      sizes="32x32"
+      type="image/png"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Welcome to Joke Zone – Jokes That Crack You Up!</h1>
+
+      <form action="/" method="post">
+        <p>Select category / categories:</p>
+
+        <div class="input-content">
+          <div class="any-option">
+            <input type="radio" name="category" value="any" id="any"
+            <%=(!formData.category || formData.category==='any' ) ? 'checked' :
+            '' %> />
+            <label for="any">Any</label>
+          </div>
+
+          <input type="radio" name="category" value="custom" id="custom"
+          <%=formData.category==='custom' ? 'checked' : '' %>/>
+          <label for="custom" id="lbl-custom">Custom:</label>
+
+          <input type="checkbox" name="programming" value="programming"
+          id="programming" <%=formData.programming? 'checked' : '' %> />
+          <label for="programming">Programming</label>
+
+          <input type="checkbox" name="misc" value="misc" id="misc"
+          <%=formData.misc? 'checked' : '' %> />
+          <label for="misc">Misc</label>
+
+          <input type="checkbox" name="dark" value="dark" id="dark"
+          <%=formData.dark? 'checked' : '' %> />
+          <label for="dark">Drak</label>
+
+          <input type="checkbox" name="pun" value="pun" id="pun"
+          <%=formData.pun? 'checked' : '' %> />
+          <label for="pun">Pun</label>
+
+          <input type="checkbox" name="spooky" value="spooky" id="spooky"
+          <%=formData.spooky? 'checked' : '' %>/>
+          <label for="spooky">Spooky</label>
+
+          <input type="checkbox" name="christmas" value="christmas"
+          id="christmas" <%=formData.christmas? 'checked' : '' %> />
+          <label for="christmas">Christmas</label>
+        </div>
+        <p>Select language:</p>
+        <div class="input-content">
+          <select name="language" id="language">
+          <option value="cs" <%=formData.language==='cs' ? 'selected' : '' %>>cs - Czech</option>
+          <option value="de" <%=formData.language==='de' ? 'selected' : '' %>>de - German</option>
+          <option value="en" <%=(!formData.language || formData.language==='en' )? 'selected' : '' %>>en - English
+          </option>
+          <option value="es" <%=formData.language==='es' ? 'selected' : '' %>>es - Spanish</option>
+          <option value="fr" <%=formData.language==='fr' ? 'selected' : '' %>>fr - French</option>
+          <option value="pt" <%=formData.language==='pt' ? 'selected' : '' %>>pt - Portuguese</option>
+        </select>
+        </div>
+
+        <p>Select flags to blacklist:</p>
+
+        <div class="input-content blacklist-flags">
+          <span>(Optional)</span>
+
+          <input type="checkbox" name="nsfw" id="nsfw" value="nsfw"
+          <%=formData.nsfw==='nsfw' ? 'checked' : '' %>/>
+          <label for="nsfw">nsfw</label>
+
+          <input type="checkbox" name="religious" id="religious"
+          value="religious" <%=formData.religious==='religious' ? 'checked' : ''
+          %> />
+          <label for="religious">religious</label>
+
+          <input type="checkbox" name="political" id="political"
+          value="political" <%=formData.political==='political' ? 'checked' : ''
+          %> />
+          <label for="political">political</label>
+
+          <input type="checkbox" name="racist" id="racist" value="racist"
+          <%=formData.racist==='racist' ? 'checked' : '' %> />
+          <label for="racist">racist</label>
+
+          <input type="checkbox" name="sexist" id="sexist" value="sexist"
+          <%=formData.sexist==='sexist' ? 'checked' : '' %>/>
+          <label for="sexist">sexist</label>
+
+          <input type="checkbox" name="explicit" id="explicit" value="explicit"
+          <%=formData.explicit==='explicit' ? 'checked' : '' %> />
+          <label for="explicit">explicit</label>
+        </div>
+
+        <p>Select response format:</p>
+
+        <div class="input-content">
+          <input type="radio" name="response-format" id="json" value="json"
+          <%=!formData['response-format'] ||
+          formData['response-format']==='json' ? 'checked' : '' %> />
+          <label for="json">default (json)</label>
+
+          <input type="radio" name="response-format" id="xml" value="xml"
+          <%=formData['response-format']==='xml' ? 'checked' : '' %> />
+          <label for="xml">xml</label>
+
+          <input type="radio" name="response-format" id="yaml" value="yaml"
+          <%=formData['response-format']==='yaml' ? 'checked' : '' %> />
+          <label for="yaml">yaml</label>
+
+          <input type="radio" name="response-format" id="plain-text" value="txt"
+          <%=formData['response-format']==='txt' ? 'checked' : '' %> />
+          <label for="plain-text">plain text</label>
+        </div>
+
+        <p>Select at least one joke type:</p>
+
+        <div class="input-content joke-type">
+          <input type="checkbox" name="single" id="single" value="single"
+          <%=(typeof formData.single==='undefined' || formData.single) ?
+          'checked' : '' %> />
+          <label for="single">single</label>
+
+          <input type="checkbox" name="twopart" id="twopart" value="twopart"
+          <%=(typeof formData.twopart==='undefined' || formData.twopart) ?
+          'checked' : '' %> />
+          <label for="twopart">two part</label>
+        </div>
+
+        <p>Search for a joke that contains this search string:</p>
+        <div class="input-content">
+          <input
+            type="text"
+            name="search-string"
+            id="search-string"
+            placeholder="(optional)"
+            value="<%= formData['search-string'] || '' %>"
+          />
+        </div>
+
+        <p>Search for a joke in this ID range:</p>
+
+        <div class="input-content id-range">
+          <span>(optional)</span>
+          <label for="from">From: </label>
+          <input
+            type="number"
+            name="from"
+            id="from"
+            min="0"
+            max="318"
+            value="<%= formData.from || '0' %>"
+            required
+          />
+
+          <label for="to">To: </label>
+          <input
+            type="number"
+            name="to"
+            id="to"
+            min="0"
+            max="318"
+            value="<%= formData.to || '318' %>"
+            required
+          />
+        </div>
+
+        <p>Amount of jokes:</p>
+        <div class="input-content">
+          <input
+            type="number"
+            name="joke-amount"
+            id="joke-amount"
+            value="<%= formData['joke-amount'] || '1'%>"
+            min="1"
+            max="10"
+            required
+          />
+        </div>
+        <div class="form-buttons">
+          <button type="reset" class="reset btn">Reset Form</button>
+          <button type="submit" class="submit btn">Send Request</button>
+        </div>
+      </form>
+
+      <section class="result-section">
+        <h3>Result:</h3>
+        <pre>
+<%= result ? result : 'Set parameters and click "Send Request" above' %></pre
+        >
+      </section>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/index.js"></script>
+  </body>
+</html>

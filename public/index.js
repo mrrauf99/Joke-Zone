@@ -107,9 +107,7 @@ $("form").on("submit", function (e) {
     isCategoryChecked = true;
   }
 
-  if (isCategoryChecked && isJokeTypeChecked && isIdRangeValid) {
-    return;
-  } else {
+  if (!isCategoryChecked || !isJokeTypeChecked || !isIdRangeValid) {
     e.preventDefault();
     $("pre").text(
       "Error:\n\nOne or more of the parameters you specified are invalid.\nThey are outlined with a red border.\n\nPlease correct the parameters and try again."

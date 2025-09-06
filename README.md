@@ -26,3 +26,8 @@ All jokes are fetched from the official [Joke API](https://sv443.net/jokeapi/v2/
 - **EJS** – HTML templating engine  
 - **Joke API** – source of jokes  
 - **HTML, CSS, JavaScript** – frontend design
+
+---
+
+## 🎯 Thanks
+Thank you for checking out Joke Zone! Hope it brings a smile to your day 😄.

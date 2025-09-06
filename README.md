@@ -29,5 +29,5 @@ All jokes are fetched from the official [Joke API](https://sv443.net/jokeapi/v2/
 
 ---
 
-## ❤️ Thanks
+## ❤️ Thank You!
 Thank you for checking out Joke Zone! Hope it brings a smile to your day 😄.
